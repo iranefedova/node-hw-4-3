@@ -1,6 +1,14 @@
 angular
     .module('PokemonApp')
     .factory('PokemonsService', function($http) {
+// если применять common для всех запросов, pokeapi.co ругается
+            $http.defaults.headers.post = {
+                "application-id": "BBE2BD1F-9306-F389-FFCE-0D7310E74300",
+                "secret-key": "21A60E66-E921-977A-FF7D-AF3F75E3B400"
+
+            };
+
+            $http.defaults.headers.delete = $http.defaults.headers.post;
 
             return {
 
@@ -16,11 +24,6 @@ angular
                     return $http({
                         method: 'POST',
                         url: 'https://api.backendless.com/v1/data/pokemon',
-                        headers: {
-                            "application-id": "4B730C92-F81E-236B-FFF0-6651FE882800",
-                            "secret-key": "CB6DE86C-6069-86C4-FF1C-9049D5AC9400"
-
-                        },
                         data: pokemonData
                     });
                 },
@@ -28,12 +31,7 @@ angular
                 deletePokemon: function(pokemonId) {
                     return $http({
                         method: 'DELETE',
-                        url: 'https://api.backendless.com/v1/data/pokemon/' + pokemonId,
-                        headers: {
-                            "application-id": "4B730C92-F81E-236B-FFF0-6651FE882800",
-                            "secret-key": "CB6DE86C-6069-86C4-FF1C-9049D5AC9400"
-
-                        }
+                        url: 'https://api.backendless.com/v1/data/pokemon/' + pokemonId
                     });
                 }
 
