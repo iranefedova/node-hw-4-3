@@ -9,7 +9,7 @@ angular
             };
 
             $http.defaults.headers.delete = $http.defaults.headers.post;
-
+            $http.defaults.headers.put = $http.defaults.headers.post;
             return {
 
                 getPokemons: function() {
@@ -24,6 +24,14 @@ angular
                     return $http({
                         method: 'POST',
                         url: 'https://api.backendless.com/v1/data/pokemon',
+                        data: pokemonData
+                    });
+                },
+
+                editPokemon: function(pokemonData) {
+                    return $http({
+                        method: 'PUT',
+                        url: 'https://api.backendless.com/v1/data/pokemon/' + pokemonData.name,
                         data: pokemonData
                     });
                 },

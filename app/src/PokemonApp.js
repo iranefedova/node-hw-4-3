@@ -23,6 +23,10 @@ angular
             templateUrl: 'src/PokemonRealtime/PokemonRealtime.html',
             controller: 'PokemonRealtimeCtrl'
         }).
+        when('/edit/:pokemonId', {
+          templateUrl: 'src/EditPokemon/EditPokemon.html',
+          controller: 'EditPokemonCtrl'
+        }).
         otherwise({
             redirectTo: '/'
         });
